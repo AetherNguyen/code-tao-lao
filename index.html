@@ -16,7 +16,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <style>
+    <style id="core-theme-styles">
         @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
         * {
@@ -38,10 +38,11 @@
         }
 
         /* ==================== HỆ THỐNG 2 BỘ 3 MÀU ĐƠN SẮC (SOLID TRI-COLOR SYSTEM) ==================== */
-        /* BỘ 1: CHẾ ĐỘ TỐI (DARK MODE)
-           - Tiếng Việt (.theme-vi): Đỏ Ruby Ánh Kim (#F43F5E) chủ đạo & Vàng Hoàng Kim Champagne (#F59E0B) điểm nhấn trên nền Đen Onyx Sâu (#090A0F)
-           - Tiếng Anh (.theme-en): Xanh Cobalt (#3B82F6) & Xanh Cyan (#06B6D4) trên nền Đen Sapphire (#080C14) */
+        /* BỘ 1: CHẾ ĐỘ TỐI (DARK MODE) */
         :root,
+        .dark-theme,
+        .dark-theme.theme-vi,
+        .dark-theme .theme-vi,
         .theme-vi {
             --bg-base: #090A0F;
             --surface-solid: #11131C;
@@ -56,9 +57,20 @@
             --border-color: #272A3A;
             --accent-glow: rgba(244, 63, 94, 0.35);
             --mint-glow: rgba(245, 158, 11, 0.3);
-            --text-blur-bg: rgba(17, 19, 28, 0.72);
+            --text-blur-bg: rgba(17, 19, 28, 0.76);
+            --grad-cpp: linear-gradient(125deg, #ffffff 0%, #ffe4e6 16%, #fb7185 34%, #e11d48 50%, #fff1f2 66%, #f43f5e 84%, #ffffff 100%);
+            --shadow-cpp: drop-shadow(0 2px 0 #9f1239) drop-shadow(0 4px 0 #881337) drop-shadow(0 6px 0 #4c0519) drop-shadow(0 12px 26px rgba(244, 63, 94, 0.55));
+            --grad-metal-primary: linear-gradient(135deg, #ffffff 0%, #fecdd3 22%, #F43F5E 48%, #be123c 72%, #ffe4e6 94%);
+            --grad-metal-accent: linear-gradient(135deg, #ffffff 0%, #fde68a 22%, #F59E0B 48%, #b45309 72%, #fef3c7 94%);
+            --grad-metal-chrome: linear-gradient(135deg, #ffffff 0%, #cbd5e1 28%, #f8fafc 50%, #94a3b8 74%, #ffffff 100%);
+            --grad-static-primary: linear-gradient(165deg, #ffffff 0%, #fecdd3 26%, #F43F5E 58%, #9f1239 85%, #ffe4e6 100%);
+            --grad-static-accent: linear-gradient(165deg, #ffffff 0%, #fde68a 26%, #F59E0B 58%, #b45309 85%, #fef3c7 100%);
+            --grad-static-chrome: linear-gradient(165deg, #ffffff 0%, #e2e8f0 35%, #94a3b8 72%, #f8fafc 100%);
+            --metal-shadow: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.48));
         }
 
+        .dark-theme.theme-en,
+        .dark-theme .theme-en,
         .theme-en {
             --bg-base: #080C14;
             --surface-solid: #101726;
@@ -73,15 +85,29 @@
             --border-color: #1E293B;
             --accent-glow: rgba(59, 130, 246, 0.35);
             --mint-glow: rgba(6, 182, 212, 0.3);
-            --text-blur-bg: rgba(16, 23, 38, 0.68);
+            --text-blur-bg: rgba(16, 23, 38, 0.74);
+            --grad-cpp: linear-gradient(125deg, #ffffff 0%, #e0f2fe 14%, #60a5fa 30%, #3b82f6 48%, #f0f9ff 64%, #38bdf8 82%, #ffffff 100%);
+            --shadow-cpp: drop-shadow(0 2px 0 #1d4ed8) drop-shadow(0 4px 0 #1e3a8a) drop-shadow(0 6px 0 #172554) drop-shadow(0 12px 24px rgba(59, 130, 246, 0.55));
+            --grad-metal-primary: linear-gradient(135deg, #ffffff 0%, #93c5fd 22%, #3B82F6 48%, #1d4ed8 70%, #dbeafe 92%);
+            --grad-metal-accent: linear-gradient(135deg, #ffffff 0%, #67e8f9 22%, #06B6D4 48%, #0e7490 70%, #cffafe 92%);
+            --grad-metal-chrome: linear-gradient(135deg, #ffffff 0%, #cbd5e1 28%, #f8fafc 50%, #94a3b8 74%, #ffffff 100%);
+            --grad-static-primary: linear-gradient(165deg, #ffffff 0%, #93c5fd 28%, #3B82F6 58%, #1d4ed8 85%, #dbeafe 100%);
+            --grad-static-accent: linear-gradient(165deg, #ffffff 0%, #67e8f9 28%, #06B6D4 58%, #0e7490 85%, #cffafe 100%);
+            --grad-static-chrome: linear-gradient(165deg, #ffffff 0%, #e2e8f0 35%, #94a3b8 72%, #f8fafc 100%);
+            --metal-shadow: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.48));
         }
 
-        /* BỘ 2: CHẾ ĐỘ SÁNG (LIGHT MODE - ĐỒNG BỘ ĐỔI MÀU THEO TIẾNG VIỆT & TIẾNG ANH) */
+        /* BỘ 2: CHẾ ĐỘ SÁNG (LIGHT MODE - TƯƠNG PHẢN CAO, ĐỒNG BỘ 100% TRÊN MỌI TRÌNH DUYỆT WEB) */
+        html.light-theme,
         body.light-theme,
-        body.light-theme .theme-vi {
+        .light-theme,
+        html.light-theme .theme-vi,
+        body.light-theme .theme-vi,
+        .light-theme.theme-vi,
+        .light-theme .theme-vi {
             --bg-base: #F7F5F0;
             --surface-solid: #FFFFFF;
-            --surface-elevated: #F2EFE9;
+            --surface-elevated: #EFECE6;
             --brand-primary: #BE123C;
             --brand-accent: #B45309;
             --btn-grad: linear-gradient(135deg, #9F1239 0%, #E11D48 52%, #D97706 100%);
@@ -89,16 +115,28 @@
             --text-muted: #475569;
             --card-bg: #FFFFFF;
             --header-bg: #FFFFFF;
-            --border-color: #E2D9C8;
+            --border-color: #DCD3C2;
             --accent-glow: rgba(190, 18, 60, 0.18);
             --mint-glow: rgba(180, 83, 9, 0.16);
-            --text-blur-bg: rgba(255, 255, 255, 0.82);
+            --text-blur-bg: rgba(255, 255, 255, 0.88);
+            --grad-cpp: linear-gradient(125deg, #4c0519 0%, #9f1239 22%, #e11d48 45%, #be123c 62%, #881337 82%, #4c0519 100%);
+            --shadow-cpp: drop-shadow(0 2px 0 #fecdd3) drop-shadow(0 4px 0 #fda4af) drop-shadow(0 10px 18px rgba(159, 18, 57, 0.28));
+            --grad-metal-primary: linear-gradient(135deg, #4c0519 0%, #be123c 35%, #e11d48 52%, #881337 78%, #4c0519 100%);
+            --grad-metal-accent: linear-gradient(135deg, #451a03 0%, #b45309 35%, #d97706 52%, #78350f 78%, #451a03 100%);
+            --grad-metal-chrome: linear-gradient(135deg, #0f172a 0%, #334155 35%, #1e293b 55%, #475569 78%, #0f172a 100%);
+            --grad-static-primary: linear-gradient(165deg, #4c0519 0%, #be123c 45%, #e11d48 70%, #881337 100%);
+            --grad-static-accent: linear-gradient(165deg, #451a03 0%, #b45309 42%, #d97706 68%, #78350f 100%);
+            --grad-static-chrome: linear-gradient(165deg, #0f172a 0%, #334155 48%, #475569 78%, #0f172a 100%);
+            --metal-shadow: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.12));
         }
 
-        body.light-theme .theme-en {
+        html.light-theme .theme-en,
+        body.light-theme .theme-en,
+        .light-theme.theme-en,
+        .light-theme .theme-en {
             --bg-base: #EFF6FF;
             --surface-solid: #FFFFFF;
-            --surface-elevated: #F0F9FF;
+            --surface-elevated: #E0F2FE;
             --brand-primary: #1D4ED8;
             --brand-accent: #0284C7;
             --btn-grad: linear-gradient(135deg, #1E40AF 0%, #2563EB 50%, #0284C7 100%);
@@ -109,7 +147,16 @@
             --border-color: #BFDBFE;
             --accent-glow: rgba(29, 78, 216, 0.18);
             --mint-glow: rgba(2, 132, 199, 0.18);
-            --text-blur-bg: rgba(255, 255, 255, 0.76);
+            --text-blur-bg: rgba(255, 255, 255, 0.88);
+            --grad-cpp: linear-gradient(125deg, #0f172a 0%, #1e3a8a 20%, #1d4ed8 42%, #2563eb 54%, #1e3a8a 74%, #0f172a 100%);
+            --shadow-cpp: drop-shadow(0 2px 0 #bfdbfe) drop-shadow(0 4px 0 #93c5fd) drop-shadow(0 10px 18px rgba(30, 58, 138, 0.28));
+            --grad-metal-primary: linear-gradient(135deg, #1e3a8a 0%, #2563eb 35%, #1d4ed8 52%, #1e40af 75%, #0f172a 100%);
+            --grad-metal-accent: linear-gradient(135deg, #164e63 0%, #0284c7 35%, #0369a1 52%, #075985 75%, #082f49 100%);
+            --grad-metal-chrome: linear-gradient(135deg, #0f172a 0%, #334155 35%, #1e293b 55%, #475569 78%, #0f172a 100%);
+            --grad-static-primary: linear-gradient(165deg, #0f172a 0%, #1d4ed8 42%, #2563eb 68%, #1e3a8a 100%);
+            --grad-static-accent: linear-gradient(165deg, #082f49 0%, #0284c7 45%, #0369a1 70%, #075985 100%);
+            --grad-static-chrome: linear-gradient(165deg, #0f172a 0%, #334155 48%, #475569 78%, #0f172a 100%);
+            --metal-shadow: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.12));
         }
 
         /* Lớp làm mờ cục bộ ngay dưới vùng có chữ để tránh rối mắt bởi hiệu ứng nền */
@@ -120,6 +167,7 @@
             padding: 8px 16px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-main);
             box-shadow:
                 0 18px 32px -8px rgba(0, 0, 0, 0.72),
                 0 6px 12px -2px rgba(0, 0, 0, 0.45),
@@ -133,6 +181,7 @@
             -webkit-backdrop-filter: blur(12px);
             border-radius: 28px;
             border: 1px solid rgba(255, 255, 255, 0.12);
+            color: var(--text-main);
             box-shadow:
                 0 28px 55px -12px rgba(0, 0, 0, 0.75),
                 0 10px 20px -5px rgba(0, 0, 0, 0.5),
@@ -154,51 +203,56 @@
                 inset 0 -16px 32px 0 rgba(0, 0, 0, 0.75);
         }
 
+        .light-theme .text-blur-shield,
         body.light-theme .text-blur-shield {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(241, 245, 249, 0.88) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.9);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(241, 245, 249, 0.92) 100%) !important;
+            border: 1px solid var(--border-color) !important;
+            color: #0F172A !important;
             box-shadow:
-                0 16px 28px -8px rgba(15, 23, 42, 0.18),
-                0 4px 10px -2px rgba(15, 23, 42, 0.1),
+                0 14px 26px -8px rgba(15, 23, 42, 0.14),
+                0 4px 10px -2px rgba(15, 23, 42, 0.08),
                 inset 0 1px 0 0 #FFFFFF,
-                inset 0 -2px 0 0 rgba(148, 163, 184, 0.35);
+                inset 0 -2px 0 0 rgba(148, 163, 184, 0.28) !important;
         }
 
+        .light-theme .text-blur-aura,
         body.light-theme .text-blur-aura {
-            background: linear-gradient(165deg, rgba(255, 255, 255, 0.95) 0%, rgba(241, 245, 249, 0.88) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.95);
+            background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 250, 252, 0.92) 100%) !important;
+            border: 1px solid var(--border-color) !important;
+            color: #0F172A !important;
             box-shadow:
-                0 24px 48px -12px rgba(15, 23, 42, 0.18),
-                0 8px 18px -4px rgba(15, 23, 42, 0.08),
+                0 22px 44px -12px rgba(15, 23, 42, 0.14),
+                0 8px 18px -4px rgba(15, 23, 42, 0.06),
                 inset 0 1px 0 0 #FFFFFF,
-                inset 0 -3px 6px 0 rgba(148, 163, 184, 0.28);
+                inset 0 -3px 6px 0 rgba(148, 163, 184, 0.22) !important;
         }
 
+        .light-theme .text-blur-circle,
         body.light-theme .text-blur-circle {
-            background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, rgba(248, 250, 252, 0.9) 62%, rgba(226, 232, 240, 0.85) 100%);
-            border: 1px solid #FFFFFF;
+            background: radial-gradient(circle at 35% 30%, #FFFFFF 0%, rgba(248, 250, 252, 0.95) 62%, rgba(226, 232, 240, 0.9) 100%) !important;
+            border: 1.5px solid var(--border-color) !important;
             box-shadow:
-                0 30px 65px -15px rgba(15, 23, 42, 0.22),
-                0 10px 25px -5px var(--accent-glow),
+                0 28px 60px -15px rgba(15, 23, 42, 0.18),
+                inset 0 0 32px -6px var(--accent-glow),
                 inset 0 3px 6px 0 #FFFFFF,
-                inset 0 -14px 28px 0 rgba(148, 163, 184, 0.35);
+                inset 0 -14px 28px 0 rgba(148, 163, 184, 0.28) !important;
         }
 
         body {
             margin: 0;
-            background-color: var(--bg-base);
-            color: var(--text-main);
-            transition: background-color 0.35s ease, color 0.35s ease;
+            background-color: var(--bg-base) !important;
+            color: var(--text-main) !important;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .app-container {
-            background-color: var(--bg-base);
+            background-color: var(--bg-base) !important;
             background-image:
                 radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.04) 0%, transparent 55%),
                 radial-gradient(circle at 15% 85%, var(--accent-glow) 0%, transparent 45%),
                 radial-gradient(circle at 85% 20%, var(--mint-glow) 0%, transparent 45%);
-            color: var(--text-main);
-            transition: background-color 0.35s ease, color 0.35s ease;
+            color: var(--text-main) !important;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Thẻ bề mặt có độ dày 3D, ánh sáng hắt đỉnh (Top Specular Highlight) & Đổ bóng đa tầng */
@@ -216,9 +270,13 @@
             transition: border-color 0.25s ease, transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease, background-color 0.35s ease;
         }
 
+        .light-theme .glass-panel,
+        .light-theme .unified-course-card,
         body.light-theme .glass-panel,
         body.light-theme .unified-course-card {
+            background-color: #FFFFFF !important;
             background-image: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%) !important;
+            color: #0F172A !important;
             box-shadow:
                 0 18px 36px -10px rgba(15, 23, 42, 0.12),
                 0 4px 12px -2px rgba(15, 23, 42, 0.06),
@@ -236,6 +294,7 @@
                 inset 0 -2px 0 0 rgba(0, 0, 0, 0.5);
         }
 
+        .light-theme .unified-course-card:hover,
         body.light-theme .unified-course-card:hover {
             box-shadow:
                 0 24px 44px -10px rgba(15, 23, 42, 0.18),
@@ -244,7 +303,7 @@
                 inset 0 -2px 0 0 rgba(148, 163, 184, 0.5) !important;
         }
 
-        /* Hốc lõm / Khung lồng bên trong (Tạo cảm giác khắc chìm hoặc phân lớp rõ rệt) */
+        /* Hốc lõm / Khung lồng bên trong */
         .surface-elevated {
             background-color: var(--surface-elevated) !important;
             border: 1px solid var(--border-color) !important;
@@ -254,7 +313,10 @@
                 0 1px 0 0 rgba(255, 255, 255, 0.06);
         }
 
+        .light-theme .surface-elevated,
         body.light-theme .surface-elevated {
+            background-color: var(--surface-elevated) !important;
+            color: #0F172A !important;
             box-shadow:
                 inset 0 2px 5px 0 rgba(15, 23, 42, 0.06),
                 0 1px 0 0 #FFFFFF !important;
@@ -300,8 +362,11 @@
             transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
 
+        .light-theme .btn-solid-secondary,
         body.light-theme .btn-solid-secondary {
+            background-color: #FFFFFF !important;
             background-image: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%) !important;
+            color: #0F172A !important;
             box-shadow:
                 0 4px 10px -2px rgba(15, 23, 42, 0.08),
                 inset 0 1px 0 0 #FFFFFF,
@@ -313,63 +378,33 @@
             transform: translateY(-1px);
         }
 
-        /* Đồng bộ Light Mode rõ nét tuyệt đối, chống chìm chữ */
+        /* Đồng bộ Light Mode rõ nét cho Header, Sidebar & Khung mẫu I/O */
+        .light-theme header,
+        .light-theme aside,
+        .light-theme footer,
         body.light-theme header,
-        body.light-theme aside {
+        body.light-theme aside,
+        body.light-theme footer {
             background-color: #FFFFFF !important;
             border-color: var(--border-color) !important;
             color: #0F172A !important;
         }
 
-        body.light-theme .bg-slate-950,
-        body.light-theme .bg-slate-950\/95,
-        body.light-theme .bg-slate-950\/90,
-        body.light-theme .bg-slate-950\/85,
-        body.light-theme .bg-slate-950\/80,
-        body.light-theme .bg-slate-950\/70,
-        body.light-theme .bg-slate-900,
-        body.light-theme .bg-slate-900\/95,
-        body.light-theme .bg-slate-900\/90,
-        body.light-theme .bg-slate-900\/80,
-        body.light-theme .bg-slate-800 {
-            background-color: var(--surface-elevated) !important;
-            color: #0F172A !important;
-            border-color: var(--border-color) !important;
+        .sample-io-box {
+            background-color: #090D16;
+            color: #6EE7B7;
+            border: 1px solid #1E293B;
         }
 
-        body.light-theme .text-white,
-        body.light-theme .text-slate-100,
-        body.light-theme .text-slate-200 {
-            color: #0F172A !important;
-        }
-
-        body.light-theme .text-slate-300,
-        body.light-theme .text-slate-400,
-        body.light-theme .text-slate-500 {
-            color: #334155 !important;
-        }
-
-        body.light-theme .text-indigo-300,
-        body.light-theme .text-indigo-400 {
-            color: #1D4ED8 !important;
-        }
-
-        body.light-theme .text-emerald-300,
-        body.light-theme .text-emerald-400 {
-            color: #0F766E !important;
-        }
-
-        body.light-theme .text-amber-300,
-        body.light-theme .text-amber-400 {
-            color: #B45309 !important;
-        }
-
-        body.light-theme .text-rose-300,
-        body.light-theme .text-rose-400 {
-            color: #BE123C !important;
+        .light-theme .sample-io-box,
+        body.light-theme .sample-io-box {
+            background-color: #F8FAFC !important;
+            color: #047857 !important;
+            border: 1px solid #CBD5E1 !important;
         }
 
         /* Chế độ Sáng cho IDE: Nền trắng tinh khiết, viền rõ nét, chữ & màu từ khóa tương phản cao */
+        .light-theme .ide-dark-keep,
         body.light-theme .ide-dark-keep {
             background-color: #FFFFFF !important;
             color: #0F172A !important;
@@ -377,11 +412,17 @@
             box-shadow: 0 12px 30px -10px rgba(15, 23, 42, 0.08) !important;
         }
 
+        .light-theme .ide-dark-keep .bg-slate-950,
         body.light-theme .ide-dark-keep .bg-slate-950 {
             background-color: #FFFFFF !important;
             color: #0F172A !important;
         }
 
+        .light-theme .ide-dark-keep .bg-slate-900,
+        .light-theme .ide-dark-keep .bg-slate-900\/95,
+        .light-theme .ide-dark-keep .bg-slate-900\/90,
+        .light-theme .ide-dark-keep .bg-slate-900\/80,
+        .light-theme .ide-dark-keep .bg-slate-900\/60,
         body.light-theme .ide-dark-keep .bg-slate-900,
         body.light-theme .ide-dark-keep .bg-slate-900\/95,
         body.light-theme .ide-dark-keep .bg-slate-900\/90,
@@ -389,14 +430,21 @@
         body.light-theme .ide-dark-keep .bg-slate-900\/60 {
             background-color: #F8FAFC !important;
             color: #0F172A !important;
+            border-color: #E2E8F0 !important;
         }
 
+        .light-theme .ide-dark-keep .bg-slate-800,
         body.light-theme .ide-dark-keep .bg-slate-800 {
             background-color: #F1F5F9 !important;
             color: #0F172A !important;
             border-color: #CBD5E1 !important;
         }
 
+        .light-theme .ide-dark-keep .text-slate-200,
+        .light-theme .ide-dark-keep .text-slate-300,
+        .light-theme .ide-dark-keep .text-slate-400,
+        .light-theme .ide-dark-keep .text-slate-500,
+        .light-theme .ide-dark-keep .text-slate-600,
         body.light-theme .ide-dark-keep .text-slate-200,
         body.light-theme .ide-dark-keep .text-slate-300,
         body.light-theme .ide-dark-keep .text-slate-400,
@@ -406,17 +454,17 @@
         }
 
         /* Bảng màu từ khóa C++ tương phản cao trên nền IDE trắng (Light Mode) */
-        body.light-theme .c-cm { color: #64748B; }
-        body.light-theme .c-pp { color: #7E22CE; }
-        body.light-theme .c-st { color: #15803D; }
-        body.light-theme .c-nu { color: #B45309; }
-        body.light-theme .c-ty { color: #BE123C; }
-        body.light-theme .c-kw { color: #1D4ED8; }
-        body.light-theme .c-stl { color: #047857; }
-        body.light-theme .c-mem { color: #C2410C; }
-        body.light-theme .c-fn { color: #A16207; }
+        .light-theme .c-cm, body.light-theme .c-cm { color: #64748B; }
+        .light-theme .c-pp, body.light-theme .c-pp { color: #7E22CE; }
+        .light-theme .c-st, body.light-theme .c-st { color: #15803D; }
+        .light-theme .c-nu, body.light-theme .c-nu { color: #B45309; }
+        .light-theme .c-ty, body.light-theme .c-ty { color: #BE123C; }
+        .light-theme .c-kw, body.light-theme .c-kw { color: #1D4ED8; }
+        .light-theme .c-stl, body.light-theme .c-stl { color: #047857; }
+        .light-theme .c-mem, body.light-theme .c-mem { color: #C2410C; }
+        .light-theme .c-fn, body.light-theme .c-fn { color: #A16207; }
 
-        /* Chuỗi bit dây dọc từ trên xuống - Cao bằng đúng nội dung thực (max-content) để lặp -50% -> 0% mượt tuyệt đối không bị giật */
+        /* Chuỗi bit dây dọc từ trên xuống */
         @keyframes bitStreamMoveTopDown {
             0% { transform: translate3d(0, -50%, 0); }
             100% { transform: translate3d(0, 0%, 0); }
@@ -438,6 +486,8 @@
             text-shadow: 0 0 6px currentColor;
         }
 
+        .light-theme .bit-stream-col,
+        .light-theme .bit-stream-col-slow,
         body.light-theme .bit-stream-col,
         body.light-theme .bit-stream-col-slow {
             text-shadow: none;
@@ -453,11 +503,12 @@
         }
 
         .hero-editorial-stage {
-            background-color: var(--surface-solid);
+            background-color: var(--surface-solid) !important;
             background-image:
                 radial-gradient(circle at 38% 48%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
                 linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(0, 0, 0, 0.42) 100%);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-main) !important;
             box-shadow:
                 0 35px 80px -20px rgba(0, 0, 0, 0.82),
                 0 12px 30px -10px rgba(0, 0, 0, 0.6),
@@ -465,24 +516,26 @@
                 inset 0 -16px 40px -12px rgba(0, 0, 0, 0.65);
         }
 
+        .light-theme .hero-editorial-stage,
         body.light-theme .hero-editorial-stage {
+            background-color: #FFFFFF !important;
             background-image:
                 radial-gradient(circle at 38% 48%, #FFFFFF 0%, transparent 60%),
-                linear-gradient(180deg, #FFFFFF 0%, var(--surface-elevated) 100%);
+                linear-gradient(180deg, #FFFFFF 0%, var(--surface-elevated) 100%) !important;
+            color: #0F172A !important;
             box-shadow:
                 0 30px 70px -18px rgba(15, 23, 42, 0.16),
                 0 10px 24px -8px rgba(15, 23, 42, 0.08),
                 inset 0 2px 0 0 #FFFFFF,
-                inset 0 -10px 25px -8px rgba(148, 163, 184, 0.25);
+                inset 0 -10px 25px -8px rgba(148, 163, 184, 0.25) !important;
         }
 
-        /* ==================== HIỆU ỨNG CHỮ KIM LOẠI PHẢN QUANG (3D ANODIZED METALLIC & CHROME) ==================== */
+        /* ==================== HIỆU ỨNG CHỮ KIM LOẠI PHẢN QUANG SỬ DỤNG BIẾN ĐỘNG CHỐNG KẸT MÀU CHROMIUM ==================== */
         @keyframes metallicSweep {
             0% { background-position: 0% 50%; }
             100% { background-position: 100% 50%; }
         }
 
-        /* CHẾ ĐỘ TỐI: Chữ C++ Kim Loại Đỏ Ruby Ánh Kim (VI) / Xanh Sapphire (EN) Sáng Rực */
         .cpp-monolith-red {
             position: relative;
             display: inline-block;
@@ -490,80 +543,16 @@
             font-weight: 900;
             letter-spacing: -0.06em;
             line-height: 0.88;
-            background-image: linear-gradient(
-                125deg,
-                #ffffff 0%,
-                #ffe4e6 16%,
-                #fb7185 34%,
-                #e11d48 50%,
-                #fff1f2 66%,
-                #f43f5e 84%,
-                #ffffff 100%
-            );
+            background-image: var(--grad-cpp) !important;
             background-size: 220% auto;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-clip: text !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
             animation: metallicSweep 4.5s ease-in-out infinite alternate;
-            filter:
-                drop-shadow(0 2px 0 #9f1239)
-                drop-shadow(0 4px 0 #881337)
-                drop-shadow(0 6px 0 #4c0519)
-                drop-shadow(0 12px 26px rgba(244, 63, 94, 0.55));
+            filter: var(--shadow-cpp);
         }
 
-        .theme-en .cpp-monolith-red {
-            background-image: linear-gradient(
-                125deg,
-                #ffffff 0%,
-                #e0f2fe 14%,
-                #60a5fa 30%,
-                #3b82f6 48%,
-                #f0f9ff 64%,
-                #38bdf8 82%,
-                #ffffff 100%
-            );
-            filter:
-                drop-shadow(0 2px 0 #1d4ed8)
-                drop-shadow(0 4px 0 #1e3a8a)
-                drop-shadow(0 6px 0 #172554)
-                drop-shadow(0 12px 24px rgba(59, 130, 246, 0.55));
-        }
-
-        /* CHẾ ĐỘ SÁNG: Chữ C++ Kim Loại Đỏ Ruby Burgundy Đậm Sâu (VI) / Xanh Navy (EN) */
-        body.light-theme .cpp-monolith-red {
-            background-image: linear-gradient(
-                125deg,
-                #4c0519 0%,
-                #9f1239 22%,
-                #e11d48 45%,
-                #be123c 62%,
-                #881337 82%,
-                #4c0519 100%
-            );
-            filter:
-                drop-shadow(0 2px 0 #fecdd3)
-                drop-shadow(0 4px 0 #fda4af)
-                drop-shadow(0 10px 18px rgba(159, 18, 57, 0.28));
-        }
-
-        body.light-theme .theme-en .cpp-monolith-red {
-            background-image: linear-gradient(
-                125deg,
-                #0f172a 0%,
-                #1e3a8a 20%,
-                #1d4ed8 42%,
-                #2563eb 54%,
-                #1e3a8a 74%,
-                #0f172a 100%
-            );
-            filter:
-                drop-shadow(0 2px 0 #bfdbfe)
-                drop-shadow(0 4px 0 #93c5fd)
-                drop-shadow(0 10px 18px rgba(30, 58, 138, 0.28));
-        }
-
-        /* Đảm bảo toàn bộ class chữ kim loại có vùng đệm dọc đủ rộng để không bao giờ cắt mất dấu mũ/dấu thanh tiếng Việt (Ố, Ấ, Ắ, Ế...) */
+        /* Đảm bảo toàn bộ class chữ kim loại có vùng đệm dọc đủ rộng để không bao giờ cắt mất dấu mũ/dấu thanh tiếng Việt */
         .metallic-text-primary,
         .metallic-text-accent,
         .metallic-text-chrome,
@@ -579,302 +568,64 @@
             background-clip: text !important;
             -webkit-background-clip: text !important;
             -webkit-text-fill-color: transparent !important;
+            filter: var(--metal-shadow);
         }
 
-        /* Chất liệu Kim loại Đỏ Ruby (VI) / Xanh Cobalt (EN) cho tiêu đề & từ khóa chính */
         .metallic-text-primary {
-            background-image: linear-gradient(
-                135deg,
-                #ffffff 0%,
-                #fecdd3 22%,
-                var(--brand-primary) 48%,
-                #be123c 72%,
-                #ffe4e6 94%
-            );
+            background-image: var(--grad-metal-primary) !important;
             background-size: 200% auto;
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
             animation: metallicSweep 5.5s ease-in-out infinite alternate;
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.55));
         }
 
-        .theme-en .metallic-text-primary {
-            background-image: linear-gradient(
-                135deg,
-                #ffffff 0%,
-                #93c5fd 22%,
-                var(--brand-primary) 48%,
-                #1d4ed8 70%,
-                #dbeafe 92%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-        }
-
-        /* Chất liệu Kim loại Vàng Hoàng Kim 24K (VI) / Xanh Cyan (EN) cho tiêu đề phụ & từ khóa phụ */
         .metallic-text-accent {
-            background-image: linear-gradient(
-                135deg,
-                #ffffff 0%,
-                #fde68a 22%,
-                var(--brand-accent) 48%,
-                #b45309 72%,
-                #fef3c7 94%
-            );
+            background-image: var(--grad-metal-accent) !important;
             background-size: 200% auto;
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
             animation: metallicSweep 5.5s ease-in-out infinite alternate-reverse;
-            filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.55));
         }
 
-        .theme-en .metallic-text-accent {
-            background-image: linear-gradient(
-                135deg,
-                #ffffff 0%,
-                #67e8f9 22%,
-                var(--brand-accent) 48%,
-                #0e7490 70%,
-                #cffafe 92%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-        }
-
-        /* Chất liệu Bạc Chrome / Bạch Kim xước phay cho tên ngôn ngữ trung tính */
         .metallic-text-chrome {
-            background-image: linear-gradient(
-                135deg,
-                #ffffff 0%,
-                #cbd5e1 28%,
-                #f8fafc 50%,
-                #94a3b8 74%,
-                #ffffff 100%
-            );
+            background-image: var(--grad-metal-chrome) !important;
             background-size: 200% auto;
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
         }
 
-        /* Tương phản cao cho chữ Metallic khi ở Chế độ Sáng (Light Mode) */
-        body.light-theme .metallic-text-primary {
-            background-image: linear-gradient(
-                135deg,
-                #4c0519 0%,
-                #be123c 35%,
-                #e11d48 52%,
-                #881337 78%,
-                #4c0519 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.14));
-        }
-
-        body.light-theme .theme-en .metallic-text-primary {
-            background-image: linear-gradient(
-                135deg,
-                #1e3a8a 0%,
-                #2563eb 35%,
-                #60a5fa 52%,
-                #1d4ed8 75%,
-                #0f172a 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-        }
-
-        body.light-theme .metallic-text-accent {
-            background-image: linear-gradient(
-                135deg,
-                #451a03 0%,
-                #b45309 35%,
-                #d97706 52%,
-                #78350f 78%,
-                #451a03 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            filter: drop-shadow(0 2px 4px rgba(15, 23, 42, 0.14));
-        }
-
-        body.light-theme .theme-en .metallic-text-accent {
-            background-image: linear-gradient(
-                135deg,
-                #164e63 0%,
-                #0284c7 35%,
-                #38bdf8 52%,
-                #0369a1 75%,
-                #082f49 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-        }
-
-        body.light-theme .metallic-text-chrome {
-            background-image: linear-gradient(
-                135deg,
-                #0f172a 0%,
-                #475569 35%,
-                #1e293b 55%,
-                #64748b 78%,
-                #0f172a 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.1));
-        }
-
-        /* ==================== CHỮ KIM LOẠI TĨNH (STATIC BRUSHED METALLIC) DÀNH RIÊNG CHO TRANG TRONG KHÓA HỌC ==================== */
         .metallic-static-primary {
-            background-image: linear-gradient(
-                165deg,
-                #ffffff 0%,
-                #fecdd3 26%,
-                var(--brand-primary) 58%,
-                #9f1239 85%,
-                #ffe4e6 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
-        }
-
-        .theme-en .metallic-static-primary {
-            background-image: linear-gradient(
-                165deg,
-                #ffffff 0%,
-                #93c5fd 28%,
-                var(--brand-primary) 58%,
-                #1d4ed8 85%,
-                #dbeafe 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
+            background-image: var(--grad-static-primary) !important;
         }
 
         .metallic-static-accent {
-            background-image: linear-gradient(
-                165deg,
-                #ffffff 0%,
-                #fde68a 26%,
-                var(--brand-accent) 58%,
-                #b45309 85%,
-                #fef3c7 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
-        }
-
-        .theme-en .metallic-static-accent {
-            background-image: linear-gradient(
-                165deg,
-                #ffffff 0%,
-                #67e8f9 28%,
-                var(--brand-accent) 58%,
-                #0e7490 85%,
-                #cffafe 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
+            background-image: var(--grad-static-accent) !important;
         }
 
         .metallic-static-chrome {
-            background-image: linear-gradient(
-                165deg,
-                #ffffff 0%,
-                #e2e8f0 35%,
-                #94a3b8 72%,
-                #f8fafc 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.4));
+            background-image: var(--grad-static-chrome) !important;
         }
 
-        body.light-theme .metallic-static-primary {
-            background-image: linear-gradient(
-                165deg,
-                #4c0519 0%,
-                #be123c 45%,
-                #e11d48 70%,
-                #881337 100%
-            );
+        /* Ép trình duyệt Chromium/Cốc Cốc vẽ lại trực tiếp gradient chữ kim loại khi chuyển Sáng/Tối trên web */
+        html.light-theme .cpp-monolith-red,
+        body.light-theme .cpp-monolith-red,
+        .light-theme .cpp-monolith-red,
+        html.light-theme .metallic-text-primary,
+        body.light-theme .metallic-text-primary,
+        .light-theme .metallic-text-primary,
+        html.light-theme .metallic-text-accent,
+        body.light-theme .metallic-text-accent,
+        .light-theme .metallic-text-accent,
+        html.light-theme .metallic-text-chrome,
+        body.light-theme .metallic-text-chrome,
+        .light-theme .metallic-text-chrome,
+        html.light-theme .metallic-static-primary,
+        body.light-theme .metallic-static-primary,
+        .light-theme .metallic-static-primary,
+        html.light-theme .metallic-static-accent,
+        body.light-theme .metallic-static-accent,
+        .light-theme .metallic-static-accent,
+        html.light-theme .metallic-static-chrome,
+        body.light-theme .metallic-static-chrome,
+        .light-theme .metallic-static-chrome {
+            -webkit-text-fill-color: transparent !important;
             background-clip: text !important;
             -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.12));
-        }
-
-        body.light-theme .theme-en .metallic-static-primary {
-            background-image: linear-gradient(
-                165deg,
-                #0f172a 0%,
-                #1d4ed8 42%,
-                #2563eb 68%,
-                #1e3a8a 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-        }
-
-        body.light-theme .metallic-static-accent {
-            background-image: linear-gradient(
-                165deg,
-                #451a03 0%,
-                #b45309 42%,
-                #d97706 68%,
-                #78350f 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.12));
-        }
-
-        body.light-theme .theme-en .metallic-static-accent {
-            background-image: linear-gradient(
-                165deg,
-                #082f49 0%,
-                #0284c7 45%,
-                #06b6d4 70%,
-                #0369a1 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-        }
-
-        body.light-theme .metallic-static-chrome {
-            background-image: linear-gradient(
-                165deg,
-                #0f172a 0%,
-                #334155 48%,
-                #475569 78%,
-                #0f172a 100%
-            );
-            background-clip: text !important;
-            -webkit-background-clip: text !important;
-            -webkit-text-fill-color: transparent !important;
-            filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.08));
+            transform: translateZ(0);
         }
 
         @keyframes floatSlow {
@@ -1003,7 +754,7 @@
 <body class="selection:bg-rose-500 selection:text-white min-h-screen dark-theme">
     <div id="root"></div>
 
-    <script type="text/babel">
+    <script id="app-babel-source" type="text/babel">
         const { useState, useEffect, useRef } = React;
 
         /* ==================== COMPONENT LOGO MỚI: CHỮ C ÔM 2 NGÔI SAO 4 CÁNH GEMINI CỠ LỚN (BIẾN TẤU C++) ==================== */
@@ -2607,7 +2358,7 @@
                                     </div>
                                     <div>{p.q[vi ? 0 : 1]}</div>
                                     {p.io && (
-                                        <pre className="mt-2 p-2.5 rounded-lg bg-slate-950/90 text-emerald-300 border border-slate-800 font-mono-code text-[11px] overflow-x-auto whitespace-pre-wrap">
+                                        <pre className="sample-io-box mt-2 p-2.5 rounded-lg font-mono-code text-[11px] overflow-x-auto whitespace-pre-wrap">
                                             {p.io[vi ? 0 : 1]}
                                         </pre>
                                     )}
@@ -3142,21 +2893,35 @@
             const [readingDoc, setReadingDoc] = useState(null);
             const [translateEnToVi, setTranslateEnToVi] = useState(true);
             const [isLightMode, setIsLightMode] = useState(() => {
-                return localStorage.getItem('coder_theme_mode') === 'light';
+                try { return localStorage.getItem('coder_theme_mode') === 'light'; } catch (e) { return false; }
             });
 
             useEffect(() => {
+                const htmlEl = document.documentElement;
                 const bodyEl = document.body;
                 if (isLightMode) {
+                    htmlEl.classList.remove('dark-theme');
+                    htmlEl.classList.add('light-theme');
                     bodyEl.classList.remove('dark-theme');
                     bodyEl.classList.add('light-theme');
-                    localStorage.setItem('coder_theme_mode', 'light');
+                    try { localStorage.setItem('coder_theme_mode', 'light'); } catch (e) {}
                 } else {
+                    htmlEl.classList.remove('light-theme');
+                    htmlEl.classList.add('dark-theme');
                     bodyEl.classList.remove('light-theme');
                     bodyEl.classList.add('dark-theme');
-                    localStorage.setItem('coder_theme_mode', 'dark');
+                    try { localStorage.setItem('coder_theme_mode', 'dark'); } catch (e) {}
                 }
             }, [isLightMode]);
+
+            useEffect(() => {
+                const htmlEl = document.documentElement;
+                const bodyEl = document.body;
+                htmlEl.classList.remove('theme-vi', 'theme-en');
+                bodyEl.classList.remove('theme-vi', 'theme-en');
+                htmlEl.classList.add(translateEnToVi ? 'theme-vi' : 'theme-en');
+                bodyEl.classList.add(translateEnToVi ? 'theme-vi' : 'theme-en');
+            }, [translateEnToVi]);
 
             useEffect(() => {
                 const onKeyDown = (e) => {
@@ -3927,24 +3692,27 @@
             /* ==================== PORTAL ĐĂNG NHẬP / TẠO TÀI KHOẢN / QUÊN MẬT KHẨU ==================== */
             if (!isAuthenticated) {
                 return (
-                    <div className={`app-container ${translateEnToVi ? 'theme-vi' : 'theme-en'} min-h-screen flex items-center justify-center p-4 relative overflow-hidden`}>
+                    <div
+                        key={`auth-${isLightMode ? 'light' : 'dark'}-${translateEnToVi ? 'vi' : 'en'}`}
+                        className={`app-container ${isLightMode ? 'light-theme' : 'dark-theme'} ${translateEnToVi ? 'theme-vi' : 'theme-en'} min-h-screen flex items-center justify-center p-4 relative overflow-hidden`}
+                    >
                         <OrderedBitBackground />
                         <div className="hero-editorial-stage p-7 sm:p-9 rounded-[32px] max-w-md w-full space-y-5 relative z-10 text-center">
                             <div className="flex justify-between items-center">
                                 <button
                                     type="button"
                                     onClick={() => setIsLightMode(prev => !prev)}
-                                    className="btn-solid-secondary px-3 py-1 rounded-full text-[11px]"
+                                    className="btn-solid-secondary px-3 py-1.5 rounded-full text-[11px] flex items-center gap-1.5"
                                 >
-                                    <i className={`fa-solid ${isLightMode ? 'fa-moon' : 'fa-sun'} mr-1`}></i>
-                                    {isLightMode ? (translateEnToVi ? 'Chế độ Tối' : 'Dark') : (translateEnToVi ? 'Chế độ Sáng' : 'Light')}
+                                    <i className={`fa-solid ${isLightMode ? 'fa-moon' : 'fa-sun'}`} style={{ color: 'var(--brand-primary)' }}></i>
+                                    <span>{isLightMode ? (translateEnToVi ? 'Chế độ Tối' : 'Dark Mode') : (translateEnToVi ? 'Chế độ Sáng' : 'Light Mode')}</span>
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => setTranslateEnToVi(!translateEnToVi)}
-                                    className="btn-solid-secondary px-3 py-1 rounded-full text-[11px]"
+                                    className="btn-solid-secondary px-3 py-1.5 rounded-full text-[11px]"
                                 >
-                                    {translateEnToVi ? '🇻🇳 Tiếng Việt' : '🇬🇧 English'}
+                                    {translateEnToVi ? '🇻🇳 VI' : '🇬🇧 EN'}
                                 </button>
                             </div>
 
@@ -4088,7 +3856,10 @@
             }
 
             return (
-                <div className={`app-container ${translateEnToVi ? 'theme-vi' : 'theme-en'} min-h-screen flex flex-col justify-between relative overflow-x-hidden`}>
+                <div
+                    key={`main-${isLightMode ? 'light' : 'dark'}-${translateEnToVi ? 'vi' : 'en'}`}
+                    className={`app-container ${isLightMode ? 'light-theme' : 'dark-theme'} ${translateEnToVi ? 'theme-vi' : 'theme-en'} min-h-screen flex flex-col justify-between relative overflow-x-hidden`}
+                >
                     {/* THANH ĐIỀU KHIỂN TRÊN CÙNG ĐƠN SẮC TINH GỌN */}
                     <header className="sticky top-0 z-50 border-b transition-colors duration-300" style={{ backgroundColor: 'var(--header-bg)', borderColor: 'var(--border-color)' }}>
                         <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
@@ -5034,7 +4805,7 @@
                                                                                 </div>
                                                                                 <div>{tx(task, 'description', translateEnToVi)}</div>
                                                                                 {task.sampleIO && (
-                                                                                    <pre className="mt-2 p-2.5 rounded-lg bg-slate-950/90 text-emerald-300 border border-slate-800 font-mono-code text-[11px] overflow-x-auto whitespace-pre-wrap">
+                                                                                    <pre className="sample-io-box mt-2 p-2.5 rounded-lg font-mono-code text-[11px] overflow-x-auto whitespace-pre-wrap">
                                                                                         {task.sampleIO}
                                                                                     </pre>
                                                                                 )}
